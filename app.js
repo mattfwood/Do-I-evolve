@@ -108,7 +108,7 @@ function initialize(CardCollection) {
     var mechanic = $('select.card-mechanic').val()
 
     var cardTemplate = `
-    <div class="col s12 m2">
+    <div class="col s6 m2">
       <div class="hs-card">
           <img src="${card.img}" />
       </div>
@@ -127,7 +127,7 @@ function initialize(CardCollection) {
     var mechanic = $('select.card-mechanic').val()
 
     var cardTemplate = `
-    <div class="col s12 m2">
+    <div class="col s6 m2">
       <div class="hs-card">
           <img src="${card.img}" />
       </div>
