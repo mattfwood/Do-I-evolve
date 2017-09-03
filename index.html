@@ -5,6 +5,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/main.css"/>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,6 +13,9 @@
 
     <body>
 
+    <div class="row card-container">
+
+    </div>
     <ul class="collection cards">
 
     </ul>
@@ -22,122 +26,6 @@
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script type="text/javascript" src="cards.js"></script>
-
-      <script>
-
-
-      // function search(nameKey, myArray){
-      //     for (var i=0; i < myArray.length; i++) {
-      //         if (myArray[i].cost === nameKey) {
-      //             return myArray[i];
-      //         }
-      //     }
-      // }
-
-
-      
-
-      function getCardByCost(cost) {
-      	return Cards.filter(function (index) {
-      	    return (index.cost === cost && index.type === "MINION" && index.collectible === true);
-      	});
-      }
-
-      
-
-      var costSeven = getCardByCost(7);
-      console.log(getCardByCost(7));
-
-      function getRandomCard(cost) {
-      	var cardCost = getCardByCost(cost);
-      	var randomCard = cardCost[Math.floor(Math.random()*cardCost.length)]
-      	return randomCard;
-      }
-
-      // console.log(getRandomCard(4).name);
-
-      function buildCard(card) {
-      	var cardItem = `<li class="collection-item">${card.name} (${card.cost}) </li>`;
-      	$('.cards').append(cardItem);
-      }
-
-      function evolve(startingCard) {
-      	console.log(startingCard.cost)
-      	if (startingCard.cost < 11) {
-		  		var newCost = startingCard.cost + 1;
-		  		return getRandomCard(newCost)
-      	} else {
-      		console.log("this minion TOO THICC")
-      		return startingCard
-      	}
-      }
-
-      // evolve(getRandomCard(1));
-      
-      $('.evolve-cards').click(function(event) {
-      	$('.cards').empty();
-      	for (var i = 0; i < cardList.length; i++) {
-      		cardList[i] = evolve(cardList[i])
-      		// console.log(cardList)
-      	}
-      	// console.log(cardList)
-      	buildCardList();
-      	
-      });
-
-      var cardList = [
-      	getRandomCard(1),
-      	getRandomCard(2),
-      	getRandomCard(3),
-      	getRandomCard(4),
-      	getRandomCard(5)
-      ]
-
-      function buildCardList() {
-      	for (var i = 0; i < cardList.length; i++) {
-      		buildCard(cardList[i]);
-      	}
-      }
-
-      console.log(cardList);
-
-      buildCardList()
-
-      
-
-      // buildCard(1);
-      // buildCard(2);
-      // buildCard(3);
-      // buildCard(4);
-      // buildCard(5);
-
-
-
-      	// $.ajax({
-      	//     url: 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/types/Minion?cost=7',
-      	//     type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
-      	//     data: {}, // Additional parameters here
-      	//     dataType: 'json',
-      	//     success: function(data) {
-      	//     	console.log((data));
-      	//     	$(data).each(function(i, item){
-      	//     	    $('.cards').append(item.name, item.cost + "<br>");
-      	//     	})
-
-
-      	//     	$('.cards').append(JSON.parse(data));
-      	//     },
-      	//     error: function(err) { console.log(err); },
-      	//     beforeSend: function(xhr) {
-      	//     xhr.setRequestHeader("X-Mashape-Authorization", "hiDNPnZIZ5mshn7mb4HvG6dtL0NZp1P4wUujsnE9Ch9dOsWVF2"); // Enter here your Mashape key
-      	//     }
-      	// });
-
-
-
-
-
-      </script>
+      <script type="text/javascript" src="app.js"></script>
     </body>
   </html>
