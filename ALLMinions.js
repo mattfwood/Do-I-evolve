@@ -708,9 +708,6 @@ var CardData = [
         "locale": "enUS",
         "mechanics": [
             {
-                "name": "Charge"
-            },
-            {
                 "name": "Aura"
             }
         ]
