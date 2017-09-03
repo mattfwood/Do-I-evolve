@@ -1,24 +1,24 @@
-$.ajax({
-    url: 'https://omgvamp-hearthstone-v1.p.mashape.com/cards', // The URL to the API. You can get this by clicking on "Show CURL example" from an API profile
-    type: 'GET', // The HTTP Method
-    data: {
-      collectible: 1,
-    }, // Additional parameters here
-    datatype: 'json',
-    success: function(data) {
-      var CardData = []
-      for (i = 0; i < standard.length; i++) {
-        CardData.push(data[standard[i]])
-      }
-      CardData = [].concat.apply([], CardData);
-      console.log(CardData)
-      initialize(CardData);
-    },
-    error: function(err) { console.log(err); },
-    beforeSend: function(xhr) {
-    xhr.setRequestHeader("X-Mashape-Authorization", "hiDNPnZIZ5mshn7mb4HvG6dtL0NZp1P4wUujsnE9Ch9dOsWVF2"); // Enter here your Mashape key
-    }
-});
+// $.ajax({
+//     url: 'https://omgvamp-hearthstone-v1.p.mashape.com/cards', // The URL to the API. You can get this by clicking on "Show CURL example" from an API profile
+//     type: 'GET', // The HTTP Method
+//     data: {
+//       collectible: 1,
+//     }, // Additional parameters here
+//     datatype: 'json',
+//     success: function(data) {
+//       var CardData = []
+//       for (i = 0; i < standard.length; i++) {
+//         CardData.push(data[standard[i]])
+//       }
+//       CardData = [].concat.apply([], CardData);
+//       console.log(CardData)
+//       // initialize(CardData);
+//     },
+//     error: function(err) { console.log(err); },
+//     beforeSend: function(xhr) {
+//     xhr.setRequestHeader("X-Mashape-Authorization", "hiDNPnZIZ5mshn7mb4HvG6dtL0NZp1P4wUujsnE9Ch9dOsWVF2"); // Enter here your Mashape key
+//     }
+// });
 
 var standard = ['Basic', 'Classic', "Journey to Un'Goro", 'Knights of the Frozen Throne', 'Mean Streets of Gadgetzan', 'One Night in Karazhan', 'Whispers of the Old Gods'];
 
@@ -50,7 +50,7 @@ function initialize(CardData) {
   }
 
   function evolve(startingCard) {
-    console.log(startingCard.cost)
+    // console.log(startingCard.cost)
     if (startingCard.cost < 11) {
       var newCost = startingCard.cost + 1;
       return getRandomCard(newCost)
@@ -77,29 +77,41 @@ function initialize(CardData) {
     return randomCard;
   }
 
-  var cardList = [
-    getRandomCard(1),
-    getRandomCard(2),
-    getRandomCard(3),
-    getRandomCard(4)
-  ]
+  // var cardList = [
+  //   getRandomCard(1),
+  //   getRandomCard(2),
+  //   getRandomCard(3),
+  //   getRandomCard(4)
+  // ]
 
+  var cardList = []
 
+  function getCardList() {
+    $('select.card-value').each(function(index, el) {
+      if ($(this).val() != null) {
+        var cardValue = parseInt($(this).val());
 
+        cardList.push(getRandomCard(cardValue));
+      }
+    });
+  }
 
   function buildCardList() {
+    $('.card-container').empty()
     for (var i = 0; i < cardList.length; i++) {
       buildCard(cardList[i]);
     }
   }
 
+  $('.start-button').click(function(event) {
+    getCardList();
+    buildCardList();
+  });
 
 
 
   buildCardList();
 
-  // console.log(getRandomCard(7));
-
-
-
 }
+
+initialize(CardData)
