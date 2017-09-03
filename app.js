@@ -22,8 +22,21 @@
 
 var standard = ['Basic', 'Classic', "Journey to Un'Goro", 'Knights of the Frozen Throne', 'Mean Streets of Gadgetzan', 'One Night in Karazhan', 'Whispers of the Old Gods'];
 
+function setCollection(type) {
+  if (type == 'standard') {
+    var CardCollection = []
+    for (i = 0; i < standard.length; i++) {
+      CardCollection.push(CardData[standard[i]])
+    }
+  }
 
-function initialize(CardData) {
+  initialize(CardCollection)
+
+}
+
+setCollection('standard');
+
+function initialize(CardCollection) {
 
   function getCardByCost(cost) {
     return CardData.filter(function (index) {
@@ -77,16 +90,13 @@ function initialize(CardData) {
     return randomCard;
   }
 
-  // var cardList = [
-  //   getRandomCard(1),
-  //   getRandomCard(2),
-  //   getRandomCard(3),
-  //   getRandomCard(4)
-  // ]
-
   var cardList = []
 
+
   function getCardList() {
+
+    cardList = []
+
     $('select.card-value').each(function(index, el) {
       if ($(this).val() != null) {
         var cardValue = parseInt($(this).val());
@@ -114,4 +124,6 @@ function initialize(CardData) {
 
 }
 
-initialize(CardData)
+setCollection('standard');
+
+
