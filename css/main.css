@@ -1,4 +1,4 @@
-.card-content img {
+.hs-card img {
   width: 100%;
 }
 
@@ -16,5 +16,18 @@ nav {
   .container {
     width: 80%;
   }
+}
+
+span.badge.new {
+  width: 100%;
+}
+
+span.badge.new:after {
+    content: "";
+}
+
+.percent-label {
+  font-size: 12px;
+  text-align: center;
 }
 
